@@ -6,4 +6,5 @@ import br.com.marques.easystore.model.Cliente;
 
 public interface ClienteDAO extends CrudRepository<Cliente, Integer> {
     public Cliente findByEmailOrTelefone(String email, String telefone);
+    public Cliente findByTelefone(String telefone);
 }

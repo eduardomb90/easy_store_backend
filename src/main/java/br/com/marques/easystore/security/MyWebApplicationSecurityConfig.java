@@ -23,6 +23,7 @@ public class MyWebApplicationSecurityConfig {
                 .authorizeHttpRequests(
                     (authz) -> authz.requestMatchers(HttpMethod.GET, "/produto").permitAll()
                                     .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                                    // .requestMatchers(HttpMethod.GET, "/cliente").permitAll()
                                     .anyRequest().permitAll()
                                     //.anyRequest().authenticated()
                 );

@@ -21,9 +21,7 @@ public class PedidoServiceImpl implements IPedidoService {
             double total = 0.0;
             for(ItemPedido item: novo.getItensPedido()){
                 item.setPrecoUnitario(item.getProduto().getPreco());
-
                 item.setPrecoTotal(item.getPrecoUnitario() * item.getQtdeItem());
-
                 total += item.getPrecoTotal();
             }
 
