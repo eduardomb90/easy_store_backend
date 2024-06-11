@@ -25,9 +25,9 @@ public class PedidoController {
     @PostMapping("/pedido")
     public ResponseEntity<Pedido> inserirNovoPedido(@RequestBody Pedido novo) {
         novo.setDataPedido(LocalDate.now());
-        
+
         Cliente cliente = clienteService.atualizarDados(novo.getCliente());
-        
+
         novo.setCliente(cliente); // atualiza para o cliente que agora já está salvo no Banco de dados.
         novo = service.inserirPedido(novo);
 

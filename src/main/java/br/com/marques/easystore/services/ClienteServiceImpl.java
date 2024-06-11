@@ -20,6 +20,11 @@ public class ClienteServiceImpl implements IClienteService {
     }
 
     @Override
+    public Cliente buscarPeloCpf(String cpf) {
+        return dao.findByCpf(cpf);
+    }
+
+    @Override
     public Cliente atualizarDados(Cliente dadosOriginais) {
         return dao.save(dadosOriginais);
     }
