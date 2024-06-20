@@ -18,6 +18,7 @@ public class ClienteController {
     @Autowired
     private IClienteService service;
 
+    /*
     @GetMapping("/cliente/{telefone}")
     public ResponseEntity<Cliente> buscarPeloTelefone(@PathVariable(name = "telefone") String telefone) {
         Cliente resultado = service.buscarPeloTelefone(telefone);
@@ -28,6 +29,7 @@ public class ClienteController {
 
         return ResponseEntity.notFound().build();
     }
+     */
 
     @GetMapping("/cliente/{cpf}")
     public ResponseEntity<Cliente> buscarPeloCpf(@PathVariable(name = "cpf") String cpf) {

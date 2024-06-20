@@ -50,6 +50,14 @@ public class ProdutoController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/produto/busca")
+    public ResponseEntity<ArrayList<Produto>> buscarPorPalavraChave (@RequestParam(name = "key") String key) {
+        if(key != null)
+            return ResponseEntity.ok(service.listarPorPalavraChave(key));
+
+        return ResponseEntity.badRequest().build();
+    }
+
     @PostMapping("/produto")
     public ResponseEntity<Produto> novoProduto(@RequestBody Produto novoProduto) {
 
