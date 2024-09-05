@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class JWTTokenUtil {
 
     private static final String SECRET_KEY  = "3@$ySt0rEW3bSEcuR!tyTok3n$EcR3t!";
-    private static final int    EXPIRATION  = 2*60*1000; // 2min em milisegundos
+    private static final int    EXPIRATION  = 120*60*1000; // 2h em milisegundos
     private static final String TK_PREFIX   = "Bearer ";
     private static final String HEADER_AUTH = "Authorization";
 

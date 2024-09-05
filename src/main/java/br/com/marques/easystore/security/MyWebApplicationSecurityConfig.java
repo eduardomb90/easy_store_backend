@@ -21,11 +21,20 @@ public class MyWebApplicationSecurityConfig {
             .cors(withDefaults())
             .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests(
-                    (authz) -> authz.requestMatchers(HttpMethod.GET, "/produto").permitAll()
+                    (authz) -> authz
+                                    //requisições liberadas
+                                    .requestMatchers(HttpMethod.GET, "/categorias").permitAll()
+                                    .requestMatchers(HttpMethod.GET, "/categorias/search").permitAll()
+                                    .requestMatchers(HttpMethod.GET, "/cliente/*").permitAll()
+                                    .requestMatchers(HttpMethod.POST, "/pedido").permitAll()
+                                    .requestMatchers(HttpMethod.GET, "/produto").permitAll()
+                                    .requestMatchers(HttpMethod.GET, "/produto/categoria/*").permitAll()
+                                    .requestMatchers(HttpMethod.GET, "/produto/busca").permitAll()
+                                    .requestMatchers(HttpMethod.GET, "/produto/*").permitAll()
                                     .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                                    // .requestMatchers(HttpMethod.GET, "/cliente").permitAll()
-                                    .anyRequest().permitAll()
-                                    //.anyRequest().authenticated()
+
+                                    //.anyRequest().permitAll()     //usado para testes
+                                    .anyRequest().authenticated()
                 );
 
         http

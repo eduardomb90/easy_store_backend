@@ -49,6 +49,11 @@ public class CategoriaServiceImpl implements ICategoriaService {
     }
 
     @Override
+    public Categoria recuperarCategoriaPorId(int id) {
+        return dao.findById(id).orElse(null);
+    }
+
+    @Override
     public ArrayList<Categoria> recuperarTodasCategorias() {
         return (ArrayList<Categoria>)dao.findAll();
     }

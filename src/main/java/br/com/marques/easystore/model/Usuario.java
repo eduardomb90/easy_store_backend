@@ -28,6 +28,8 @@ public class Usuario {
     @Column(name = "nome_usuario", length = 50, nullable = false)
     private String nome;
 
+    @Column(name = "usuario_ativo")
+    private int ativo;
 
     // Getters and Setters
     public int getId() {
@@ -68,5 +70,13 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
     }
 }

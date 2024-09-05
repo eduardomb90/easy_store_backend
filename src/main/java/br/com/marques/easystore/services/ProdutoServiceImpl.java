@@ -74,4 +74,9 @@ public class ProdutoServiceImpl implements IProdutoService{
     public ArrayList<Produto> listarPorPalavraChave(String palavraChave) {
         return dao.findByNomeContainingOrDetalheContaining(palavraChave, palavraChave);
     }
+
+    @Override
+    public ArrayList<Produto> listarDestaques() {
+        return dao.findAllByDestaque(1);
+    }
 }

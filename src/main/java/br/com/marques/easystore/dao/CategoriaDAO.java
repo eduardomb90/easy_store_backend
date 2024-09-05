@@ -1,6 +1,7 @@
 package br.com.marques.easystore.dao;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 

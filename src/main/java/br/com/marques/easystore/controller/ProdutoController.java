@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.marques.easystore.model.Categoria;
 import br.com.marques.easystore.model.Produto;
+import br.com.marques.easystore.model.FileEntity;
 import br.com.marques.easystore.services.IProdutoService;
 import br.com.marques.easystore.services.IUploadService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -30,7 +33,12 @@ public class ProdutoController {
 
     @GetMapping("/produto")
     public ResponseEntity<ArrayList<Produto>> recuperarTodos() {
-        return ResponseEntity.ok(service.listarDisponiveis());
+        return ResponseEntity.ok(service.listarDestaques());
+    }
+
+    @GetMapping("/produto/todos")
+    public ResponseEntity<ArrayList<Produto>> buscarTodos() {
+        return ResponseEntity.ok(service.listarTodos());
     }
 
     @GetMapping("/produto/categoria/{id}")
@@ -73,13 +81,32 @@ public class ProdutoController {
     }
 
     @PostMapping("/produto/upload")
-    public ResponseEntity<String> uploadFoto(@RequestParam(name = "arquivo") MultipartFile  arquivo) {
+    public ResponseEntity<FileEntity> uploadFoto(@RequestParam("file") MultipartFile  file) {
 
-        String path = upload.uploadFile(arquivo);
+        String path = upload.uploadFile(file);
 
-        if(path != null)
-            ResponseEntity.status(201).body(path);
+        if(path != null) {
+            FileEntity fileEntity = new FileEntity();
+            fileEntity.setPath(path);
+            return ResponseEntity.status(201).body(fileEntity);
+        }
 
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PutMapping("/produto/{id}")
+    public ResponseEntity<Produto> atualizaProduto(@PathVariable int id, @RequestBody Produto produto) {
+        try {
+
+            if(id != produto.getId()) {
+                return ResponseEntity.badRequest().build();
+            }
+
+            Produto atualizado = service.alterarProduto(produto);
+            return ResponseEntity.ok(atualizado);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return ResponseEntity.badRequest().build();
     }
 }

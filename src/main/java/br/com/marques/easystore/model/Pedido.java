@@ -20,6 +20,11 @@ import jakarta.persistence.Table;
 @Table(name = "tbl_pedido")
 public class Pedido {
 
+    public static final int NOVO_PEDIDO = 0;
+    public static final int PAGO        = 1;
+    public static final int ENTREGUE    = 2;
+    public static final int CANCELADO   = 3;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pedido")
